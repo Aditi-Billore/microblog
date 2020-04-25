@@ -14,5 +14,6 @@ class Config(object):
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     ADMINS = ['aditib@theappineers.com']
 
+    ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
 
     POST_PER_PAGE = 3

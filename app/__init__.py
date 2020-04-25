@@ -9,6 +9,7 @@ import os
 import logging
 from logging.handlers import SMTPHandler,RotatingFileHandler
 from flask_bootstrap import Bootstrap
+from elasticsearch import Elasticsearch
 
 app = Flask(__name__,template_folder='../templates')
 app.config.from_object(Config)
@@ -19,6 +20,8 @@ login.login_view = 'login'
 mail = Mail(app)
 moment = Moment(app)
 bootstrap = Bootstrap(app)
+app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \
+        if app.config['ELASTICSEARCH_URL'] else None
 
 from app import routes,models, errors
 
